@@ -5,6 +5,7 @@ import sys
 import re
 from termcolor import cprint
 from zipfile import ZipFile as zip
+import codecs
 
 class common:
 	def __init__(self):
@@ -23,17 +24,16 @@ class common:
 
 class rules :
 
-	def __init__(self,inputfolder) :
-		self.inputfile=inputfolder
 
+
+	def __init__(self,file) :
+
+		self.inputfile=file
+		self.out = "/tmp/1"
 
 	def zipoperations(self):
-		z = zip(zipName)
-		for f in z.namelist():
-			if f.endswith('/'):
-				os.makedirs(f)
-			else:
-				z.extract(f)
+		z = zip.extractall(self.inputfile)
+		print (z)
 
 	def headeradd(self):
 		pass
@@ -47,38 +47,45 @@ class rules :
 	def classifier(self):
 		pass
 
-
-
-
-
-
-class fileoperations:
-
-	def __init__(self,filename):
-		self.filename=filename
-
 	def delimter_operations(self):
 		pass
 
-	def utf8_encoding(self):
-		pass
 	def header_add(self):
 		pass
 
 	def remove_ctrl_characters(self):
-		fd = open (self.inputfile,'r') 
-		lines=fd.read()
-		#It will replace all ASCII control characters by an empty string.
-		lines = re.sub(r'[\x00-\x1F]+', '',lines)
-		fd.close()
-	
-		fd = open(self.inputfile,'w') 
-		fd.write(lines)
+		fd = open(self.inputfile, 'r')
+		lines = fd.read()
+		# It will replace all ASCII control characters by an empty string.
+		lines = re.sub(r'[\x00-\x1F]+', '', lines)
 		fd.close()
 
+		fd = open(self.out, 'w')
+		fd.write(lines)
+		fd.close
+
+	def utf8_encoding(self):
+                print (self.out)
+		try :
+			fd1=open(self.out,'r')
+			text=fd1.read()
+			fd1.close
+		except Exception as e :
+			fatal="excpetion caught while opening the file-%s"%e
+			cprint (fatal,'red')
+
+		with codecs.open(self.out, 'w', encoding='utf8') as f:
+			f.write(text)
+			f.close
+		return self.out
 
 
 class rules_choice(rules):
+	zipflag= False
+	headerflag = False
+	threadingflag=False
+	errorflag=False
+	ctrlflag=False
 
 	def __init__(self,folder):
 		self.folder=folder
@@ -95,11 +102,11 @@ class rules_choice(rules):
 
 
 		if flag == 1 :
-			self.zipflag=True
+			zipflag=True
 			rules(self.folder).ziprequired()
 
 		elif flag == 0  :
-			self.zipflag = False
+			zipflag = False
 
 	def headeradd(self):
 		userchoice="header handling required on folder-%s ? If YES Press [1] Else Press [0]"%self.folder
@@ -113,10 +120,10 @@ class rules_choice(rules):
 
 
 		if flag == 1 :
-			self.headerflag=True
+			headerflag=True
 
 		elif flag == 0  :
-			self.headerflag=False
+			headerflag=False
 
 
 	def multithreading_required(self):
@@ -129,10 +136,10 @@ class rules_choice(rules):
 			flag = raw_input("INPUT : ")
 
 		if flag == 1:
-			self.threadingflag = True
+			threadingflag = True
 
 		elif flag == 0:
-			self.threadingflag = False
+			threadingflag = False
 
 
 	def errorfilerequied(self):
@@ -145,10 +152,10 @@ class rules_choice(rules):
 			flag = raw_input("INPUT : ")
 
 		if flag == 1:
-			self.errorflag = True
+			errorflag = True
 
 		elif flag == 0:
-			self.errorflag = False
+			errorflag = False
 
 
 	def removectrlchar(self):
@@ -161,18 +168,19 @@ class rules_choice(rules):
 			flag = raw_input("INPUT : ")
 
 		if flag == 1:
-			self.ctrlflag = True
+			ctrlflag = True
 
 		elif flag == 0:
-			self.ctrlflag = False
+			ctrlflag = False
 
 
 if __name__ == "__main__" :
-	#r=rules_choice('1')
-	#r.zipfilehandling()
-    c=common()
-
-    for filename in c.find_files('/home/act/srinivas/Proj_datamine/input/FixedWidth/input', '*'):
-        cprint (filename,'blue')
+	r=rules_choice('/home/act/srinivas/Proj_datamine/input/FixedWidth/input/Novemver-2/')
+	r.zipfilehandling()
+	c=common()
+	
+	for filename in c.find_files('/home/act/srinivas/Proj_datamine/input/FixedWidth/input', '*'):
+		cprint (filename,'blue')
+		
 
 

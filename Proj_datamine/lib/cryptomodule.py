@@ -74,7 +74,8 @@ class crypto :
 if __name__ == "__main__":
     c=crypto('1234567890123456')
     #file="/home/act/srinivas/Proj_datamine/input/FixedWidth/input/november-2/999999-96409-2017"
-    file = "/home/act/srinivas/Proj_datamine/input/fixed/SDN.XML"
+    #file = "/home/act/srinivas/Proj_datamine/input/fixed/SDN.XML"
 
-    encryptfile=c.encrypt(file)
-    print (c.decrypt(encryptfile))
+#    encryptfile=c.encrypt(file)
+    
+#print (c.decrypt(encryptfile))
