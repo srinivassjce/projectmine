@@ -1,0 +1,5 @@
+ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/  
+with schema 
+ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/isd-lite-technical-document.txt
+ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/isd-lite-format.txt
+

@@ -1,0 +1,10 @@
+Verification started
+files: file1.txt compare with file1-output.txt
+-------------
+name3,"address 31, address32, 254833",7868736487,chennai   [ not matching with ] name4|"address 41, address42, 786758"|3440998587 at line in input file file1.txt : 5  , missed chennai at output.
+
+----------------------
+
+verification completed
+status = failed
+file mismatched

@@ -1,0 +1,23 @@
+inputfilepth = "/delimited/input/"
+inputfilenames = "file*.*"
+outputfilepath = "/delimited/output/"
+output-files-encoding-type = UTF-8 //  encoding="UTF-8" (UTF-16, GBK, etc)
+zip-files-handling =  1  // Yes - 1 / No - 0
+presentdelimiter = comma  // semi ; , pipe | , comma ,  
+expecteddelimiter = pipe // semi ; , pipe | , comma ,  
+no-of-present-delimier-expected = 3
+header = 1  // Yes - 1 / No - 0
+classifier = 1  // Yes - 1 / No - 0
+classifier-enabled-fields = 2
+classifier-value = "
+remove-control-characters = 1 // 1 - yes , 0 - No, control characters (or/and) Non printable charcaters need to be removed. [input file will be ASCII file encoding] :  [ http://ascii-table.com/control-chars.php / https://ascii.cl/control-characters.htm ]
+error-file-requied =1 //  1 - yes , 0 - No
+error-files-path = "/delimited/error/"
+error-files-with-message-requied  =1 //  1 - yes , 0 - No
+error-files-with-message-path = "/delimited/errorwithmessage/"
+encryption = 1 //  1 - yes , 0 - No
+encryption-type = AES
+enable-multiple-threading = 1 //  1 - yes , 0 - No
+output-verification = 1 //  1 - yes , 0 - No - both row , columnn fields 
+archive = 1 //  1 - yes , 0 - No - only when no error record
+archive-path = "/delimited/archive/"

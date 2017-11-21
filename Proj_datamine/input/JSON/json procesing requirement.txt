@@ -1,0 +1,79 @@
+Hi, I am a looking for python developer who can convert delimiter file with below requirements
+
+Please find below requirement.
+
+Please consider below things while working:
+1. We are trying to process large amount of ml files - around 1,000,000 xml files
+2. we are trying to process as quick as possible trying python
+3. we need all validation complete with in process itself. - try to use one loop inside or other performance technoques like buffers.
+
+Below are requiremets:
+
+1. We want to process all input variables in [config.txt] and get log file[log.txt] as output.
+
+
+We need to handle below things in code
+1.  Field Separator
+sample data1: ["address 1, 'address 2', address 3"] 
+sampel data2 : ['address', "address"]  - if dat ahaving ' and " we need to handle.
+2. Removing control characters [input file will be ASCII file encoding] so remove control characters https://www.cs.tut.fi/~jkorpela/chars/c0.html except '\t' and '\n' [tab and new line]
+3. Add multiple threading process -- if possible?
+4. add or append:  
+
+
+Sample input config.txt file below:
+
+File name: config.txt 
+----------------------------------------------------------------------
+inputfilepath: 'input.xml'
+expected delimiter: comma
+header(yes/no): 1
+outputfilepath: 'output.txt'
+Wrap values in double quotes : yes/no
+encoding type: utf-8
+Removing non printable/Control characters: yes
+Add multiple threading : 
+error file requied: [yes/no]
+error file path: 'error.txt'
+error log file requied : [yes/no]
+error log path : 'errorlog.txt'
+----------------------------------------------------------------------
+
+Expected a log file with below details. which will give all details about processing a file.
+
+file name: log.txt
+----------------------------------------------------------------------
+inputfilepath: 'input.xml'
+expected delimiter: comma
+header(yes/no): 1
+outputfilepath: 'output.txt'
+Wrap values in double quotes : yes/no
+encoding type: utf-8
+Removing non printable/Control characters: yes
+Add multiple threading : 
+error file requied: [yes/no]
+error file path: 'error.txt'
+error log file requied : [yes/no]
+error log path : 'errorlog.txt'
+error file requied: 1
+error file path: 'error.txt'
+error log file requied : 1
+error log path : 'errorlog.txt'
+Removing non printable/Control characters: yes
+Add multiple threading : 2 threads
+Input file size: 34MB
+Output file size: 30MB
+File processing start time: time here
+File processing end time:  time here
+Total time taken to process file: 3seconds
+encoding : utf-8
+Status: Process completed/failed
+----------------------------------------------------------------------
+Can you do this?
+
+Help Links for few things:
+Removing non printable characters: 
+http://www.juniper.net/documentation/en_US/idp5.1/topics/reference/general/intrusion-detection-prevention-custom-attack-object-extended-ascii.html
+http://web.itu.edu.tr/sgunduz/courses/mikroisl/ascii.html
+
+

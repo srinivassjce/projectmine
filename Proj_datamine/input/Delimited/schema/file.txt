@@ -1,0 +1,6 @@
+city,state short name,state full name,|"country"|City Alias Mixed Case;
+city = ,
+state short name = ,
+state full name = ,
+country = |" "|
+city alias mixed case = ;

@@ -17,11 +17,6 @@ class common:
 				if fnmatch.fnmatch(basename, pattern):
 					filename = os.path.join(root, basename)
 					yield filename
-
-
-
-
-
 class rules :
 
 
@@ -29,7 +24,7 @@ class rules :
 	def __init__(self,file) :
 
 		self.inputfile=file
-		self.out = "/tmp/1"
+		
 
 	def zipoperations(self):
 		z = zip.extractall(self.inputfile)
@@ -40,15 +35,42 @@ class rules :
 
 
 	def delimiterhandling(self,presentdelimiter=None,expecteddelimiter=None):
-		if presentdelimiter :
-			pass
+		
+		pass
+		'''
+		buffer_size = 2048 # Maximum number of lines to buffer in memory
 
+		
+
+    		r = open(self.input_file, "r")
+    		w = open('/tmp/2', "w")
+    		buf = ""
+    		bufLines = 0
+    		for lineIn in r:
+
+        		x, y, z = lineIn.split(' ')[:3]
+        		lineOut = lineIn.replace(x,x[:-3]).replace(y,y[:-3]).replace(z,z[:-3])
+        		bufLines+=1
+
+        		if bufLines >= buffer_size:
+            			# Flush buffer to disk
+            			w.write(buf)
+            			buf = ""
+            			bufLines=1
+
+        			buf += lineOut + "\n"
+
+   				 # Flush remaining buffer to disk
+    				w.write(buf)
+    				buf.close()
+    		r.close()
+    		w.close()
+
+		'''
 
 	def classifier(self):
 		pass
 
-	def delimter_operations(self):
-		pass
 
 	def header_add(self):
 		pass
@@ -60,24 +82,32 @@ class rules :
 		lines = re.sub(r'[\x00-\x1F]+', '', lines)
 		fd.close()
 
-		fd = open(self.out, 'w')
+		fd = open(self.inputfile, 'r')
 		fd.write(lines)
 		fd.close
 
 	def utf8_encoding(self):
-                print (self.out)
 		try :
-			fd1=open(self.out,'r')
+			fd1=open(self.inputfile,'r')
 			text=fd1.read()
 			fd1.close
 		except Exception as e :
 			fatal="excpetion caught while opening the file-%s"%e
 			cprint (fatal,'red')
 
-		with codecs.open(self.out, 'w', encoding='utf8') as f:
-			f.write(text)
+		
+
+		try :
+	
+			with codecs.open(self.inputfile, 'w', encoding='utf8') as f:
+				f.write(text)
 			f.close
-		return self.out
+
+		except Exception as e :
+                          fatal="exception caught while encoding the file in utf8 format -%s"%e
+                          cprint (fatal,'red')
+		
+		return self.inputfile
 
 
 class rules_choice(rules):
